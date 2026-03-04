@@ -1,3 +1,7 @@
+#Jasper McIntyre
+#3/4/26
+#Data Structures 
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -32,11 +36,15 @@ public:
 
     MonopolySpace(string propertyName, string propertyColor, int value, int rent) {
         /* TODO: Define overloaded constructor here */
+        this->propertyName = propertyName;
 
     }
 
     bool isEqual(MonopolySpace other) {
         /* TODO: Define isEqual here (compare by name is fine if you enforce uniqueness) */
+        if (this->propertyName == other.propertyName) {
+            return true;
+        }
         return false;
     }
 
@@ -44,6 +52,7 @@ public:
         /* TODO: Define print here */
         // Example style:
         // cout << propertyName << " | " << propertyColor << " | $" << value << " | Rent " << rent;
+        cout << propertyName << " | " << propertyColor << " | $" << value << " | Rent " << rent;
     }
 };
 
@@ -109,8 +118,25 @@ public:
         // - If empty list: head=tail=player=new, new->next=head
         // - Else: tail->next=new, tail=new, tail->next=head
         // - nodeCount++
-        cout << "addSpace unwritten" << endl;
-        return false;
+        if(nodeCount == MAX_SPACES){
+            return false;
+        }
+        Node<T>* newSpace = new Node<T>(value);
+        if(headNode == nullptr){
+            headNode = newSpace;
+            tailNode = newSpace;
+            playerNode = newSpace;
+            newSpace->next = headNode;
+        }
+        else{
+            tailNode->next = newSpace;
+            tailNode = newSpace;
+            tailNode->next = headNode;
+        }
+        nodeCount++;
+        return true;
+
+       
     }
 
     // -------------------------------
