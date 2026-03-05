@@ -37,6 +37,9 @@ public:
     MonopolySpace(string propertyName, string propertyColor, int value, int rent) {
         /* TODO: Define overloaded constructor here */
         this->propertyName = propertyName;
+        this->propertyColor = propertyColor;
+        this->value = value;
+        this->rent = rent;
 
     }
 
@@ -148,8 +151,17 @@ public:
         // - Stop exactly when you reach MAX_SPACES
         // - Return number successfully added
         // - Do not corrupt pointers if capacity is exceeded
-        cout << "addMany unwritten" << endl;
-        return 0;
+        int sum = 0;
+        for(int i = 0; i < values.size(); i++){
+            if(addSpace(values[i])==true){
+                sum++;
+            }
+            else{
+                break;
+            }
+        }
+        return sum;
+
     }
 
     // -------------------------------
@@ -162,7 +174,15 @@ public:
         // - Detect and track passing GO:
         //   increment passGoCount when a move crosses from tail back to head
         // - Must handle empty list safely
-        cout << "movePlayer unwritten" << endl;
+       if(headNode == nullptr){
+        return;
+       }
+       for (int i = 0; i < steps; i++) {
+        playerNode = playerNode->nextNode;
+        if(playerNode == headNode){
+            passGoCount++;
+        }
+       }
     }
 
     int getPassGoCount() {
@@ -178,14 +198,27 @@ public:
         // - Must not infinite loop
         // - Must handle empty list
         // - Output must be deterministic and readable
-        cout << "printFromPlayer unwritten" << endl;
+        if(headNode == nullptr){
+            return;
+        }
+        for(int i = 0; i<count; i++){
+            currentNode.print();
+            currentNode = currentNode.nextNode;
+        }
     }
 
     // Optional helper: print full board once (one full cycle)
     void printBoardOnce() {
         // TODO:
         // - Traverse exactly one full cycle and print each node
-        cout << "printBoardOnce unwritten" << endl;
+        if(headNode == nullptr){
+            return;
+        }
+        Node<T>* curr = headNode;
+        for(int i=0; i<nodeCount; i++){
+            curr->print();
+            curr = curr->nextNode;
+        }
     }
 
     // -------------------------------
@@ -201,11 +234,43 @@ public:
         // - Maintain circular link tail->next=head
         // - If playerNode points to deleted node, move playerNode to a safe node
         // - nodeCount--
-        cout << "removeByName unwritten" << endl;
+        if(headNode == nullptr){
+            return false
+        }
+        Node<T>* curr = headNode;
+        Node<T>* prev = tailNode;
+        for(int i = 0; i<nodeCount; i++){
+            if(curr->data.propertyName == name){
+                //single node handling
+                if(nodeCount == 1){
+                    headNode = nullptr;
+                    tailNode = nullptr;
+                    playerNode = nullptr;
+                    delete curr;
+                    nodeCount--;
+                    return true;
+                    
+                }
+                //deleted node handling
+                if(playerNode==curr){
+                    playerNode = curr->nextNode;
+                }
+                prev->nextNode = curr->nextNode;
+
+                if(curr == headNode){
+                    headNode = curr->nextNode;
+                }
+                if(curr== tailNode){
+                    tailNode = prev;
+                }
+                
+                
+            }
+            prev = curr;
+            curr = prev->nextNode;
+        }
         return false;
     }
-
-    // -------------------------------
     // Advanced Option A (Level 1): findByColor
     // -------------------------------
     vector<string> findByColor(string color) {
