@@ -129,12 +129,12 @@ public:
             headNode = newSpace;
             tailNode = newSpace;
             playerNode = newSpace;
-            newSpace->next = headNode;
+            newSpace->nextNode = headNode;
         }
         else{
-            tailNode->next = newSpace;
+            tailNode->nextNode = newSpace;
             tailNode = newSpace;
-            tailNode->next = headNode;
+            tailNode->nextNode = headNode;
         }
         nodeCount++;
         return true;
@@ -202,8 +202,8 @@ public:
             return;
         }
         for(int i = 0; i<count; i++){
-            currentNode.print();
-            currentNode = currentNode.nextNode;
+            curr->data.print();
+            curr = curr->nextNode;
         }
     }
 
@@ -278,10 +278,21 @@ public:
         // - Traverse ring exactly once
         // - Collect matching names in vector<string>
         // - Return matches
-        cout << "findByColor unwritten" << endl;
-        vector<string> matches;
-        return matches;
+        if(headNode== nullptr){
+            return vector<string>();
     }
+    Node<T>* curr = headNode;
+    vector<string> matches;
+    do{
+        if(curr->data.propertyColor == color){
+            matches.push_back(curr->data.propertyName);
+
+    }
+    curr = curr->nextNode;
+} while(curr != headNode);
+
+return matches;
+}
 
     // -------------------------------
     // Advanced Option B (Level 2): Mirror the Board (Circular Reversal)
