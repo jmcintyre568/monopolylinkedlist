@@ -216,7 +216,7 @@ public:
         }
         Node<T>* curr = headNode;
         for(int i=0; i<nodeCount; i++){
-            curr->print();
+            curr->data.print();
             curr = curr->nextNode;
         }
     }
@@ -235,7 +235,7 @@ public:
         // - If playerNode points to deleted node, move playerNode to a safe node
         // - nodeCount--
         if(headNode == nullptr){
-            return false
+            return false;
         }
         Node<T>* curr = headNode;
         Node<T>* prev = tailNode;
@@ -263,6 +263,9 @@ public:
                 if(curr== tailNode){
                     tailNode = prev;
                 }
+                delete curr;
+                nodeCount--;
+                return true;
                 
                 
             }
@@ -313,8 +316,19 @@ return matches;
         // TODO:
         // - Must be O(n), traverse exactly once with correct stop condition
         // - Do NOT rely on nodeCount for this method
-        cout << "countSpaces unwritten" << endl;
-        return 0;
+        if(headNode == nullptr){
+            return 0;
+        }
+
+        Node<T>* curr = headNode;
+        int count = 0;
+
+        do{
+            count++;
+            curr = curr->nextNode;
+        } 
+        while(curr != headNode);
+        return count;
     }
 
     // -------------------------------
@@ -325,8 +339,23 @@ return matches;
         // - Safely delete all nodes
         // - Tip: if tailNode exists, break the cycle first: tailNode->nextNode = nullptr
         // - Then delete like a normal singly linked list
-        cout << "clear unwritten" << endl;
-    }
+        if(tailNode != nullptr){
+            tailNode->nextNode = nullptr;
+        }
+        Node<T>* curr = headNode;
+        while(curr != nullptr){
+            Node<T>* temp = curr;
+            curr = curr->nextNode;
+            delete temp;
+        }
+        headNode = nullptr;
+        tailNode = nullptr;
+        playerNode = nullptr;
+        nodeCount = 0;
+        passGoCount = 0;
+        }
+
+    
 };
 
 // -------------------------------
