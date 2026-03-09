@@ -1,6 +1,6 @@
-#Jasper McIntyre
-#3/4/26
-#Data Structures 
+//Jasper McIntyre
+//3/4/26
+//Data Structures
 
 #include <iostream>
 #include <string>
@@ -55,7 +55,7 @@ public:
         /* TODO: Define print here */
         // Example style:
         // cout << propertyName << " | " << propertyColor << " | $" << value << " | Rent " << rent;
-        cout << propertyName << " | " << propertyColor << " | $" << value << " | Rent " << rent;
+        cout << propertyName << " | " << propertyColor << " | $" << value << " | Rent " << rent << endl;
     }
 };
 
@@ -429,6 +429,9 @@ int main() {
     spaces.push_back(MonopolySpace("Luxury Tax", "None", 0, 0));
     spaces.push_back(MonopolySpace("Boardwalk", "Dark Blue", 400, 50));
 
+    int added = board.addMany(spaces);
+    cout << "Board has " << added << "spaces" << endl;
+
 
     // -------------------------------
     // Playable Traversal Loop
@@ -451,6 +454,34 @@ int main() {
     // Option A examples:
     // board.removeByName("Baltic Avenue");
     // vector<string> brownProps = board.findByColor("Brown");
+
+//removeByName if head middle or tail isnt found
+    cout << "\n removeByName demo"<< endl;
+    //head
+    board.removeByName("GO");
+    cout << "Removed GO; head node; spaces left = " << board.countSpaces() << endl;
+    //middle
+    board.removeByName("Baltic Ave");
+    cout << "Removed Baltic Ave; middle node; spaces left = " << board.countSpaces() << endl;
+    //tail
+    board.removeByName("Boardwalk");
+    cout << "Removed Boardwalk ; tail node; spaces left = " << board.countSpaces() << endl;
+    // fake street
+    bool notReal = board.removeByName("Fake Street");
+    cout << "Fake Street: " << (notReal ? "Yes" : "No (correct)") << endl;
+
+    cout << "\nfindByColor demo"<< endl;
+    vector<string> brownPropertys = board.findByColor("Brown");
+    cout << "brown properties: "<< endl;
+    for (string s: brownPropertys) {
+        cout << "   " << s << endl;
+    }
+    vector<string> trainPropertys = board.findByColor("Railroad");
+    cout << "trains: "<< endl;
+    for (string s: trainPropertys) {
+        cout << "   " << s << endl;
+    }
+
     //
     // Option B example:
     // board.mirrorBoard();
