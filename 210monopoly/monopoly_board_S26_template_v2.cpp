@@ -201,6 +201,7 @@ public:
         if(headNode == nullptr){
             return;
         }
+        Node<T>* curr = playerNode;
         for(int i = 0; i<count; i++){
             curr->data.print();
             curr = curr->nextNode;
@@ -385,7 +386,49 @@ int main() {
     //
     // NOTE: This starter calls addSpace once to show the intended API,
     // but your final submission should build a meaningful board.
-    board.addSpace(MonopolySpace("GO", "None", 0, 0));
+    //board.addSpace(MonopolySpace("GO", "None", 0, 0));
+    vector<MonopolySpace> spaces;
+    spaces.push_back(MonopolySpace("GO", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Mediterranean Ave","Brown", 60, 2));
+    spaces.push_back(MonopolySpace("Community Chest", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Baltic Ave", "Brown", 60,4));
+    spaces.push_back(MonopolySpace("Income Tax", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Reading Railroad", "Railroad", 200, 25));
+    spaces.push_back(MonopolySpace("Oriental Ave", "Light Blue", 100, 6));
+    spaces.push_back(MonopolySpace("Chance", "None", 0, 0)); 
+    spaces.push_back(MonopolySpace("Vermont Ave", "Light Blue", 100, 6));
+    spaces.push_back(MonopolySpace("Connecticut Ave", "Light Blue", 120, 8));
+    spaces.push_back(MonopolySpace("Jail/ Just Visiting", "None", 0, 0));
+    spaces.push_back(MonopolySpace("St. Charles Place", "Pink", 140, 10));
+    spaces.push_back(MonopolySpace("Electric Company", "Utility", 150, 0)); 
+    spaces.push_back(MonopolySpace("States Ave", "Pink", 140,  10));
+    spaces.push_back(MonopolySpace("Virginia Ave", "Pink", 160, 12));
+    spaces.push_back(MonopolySpace("Pennsylvania Railroad", "Railroad", 200, 25));
+    spaces.push_back(MonopolySpace("St. James Place", "Orange",180,14));
+    spaces.push_back(MonopolySpace("Community Chest", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Tennessee Ave", "Orange", 180, 14));
+    spaces.push_back(MonopolySpace("New York Ave", "Orange", 200, 16));
+    spaces.push_back(MonopolySpace("Free Parking", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Kentucky Ave", "Red", 220, 18));
+    spaces.push_back(MonopolySpace("Chance", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Indiana Ave", "Red", 220, 18));
+    spaces.push_back(MonopolySpace("Illinois Ave", "Red", 240, 20));
+    spaces.push_back(MonopolySpace("B&O Railroad", "Railroad", 200, 25)); 
+    spaces.push_back(MonopolySpace("Atlantic Ave", "Yellow", 260, 22));
+    spaces.push_back(MonopolySpace("Ventnor Ave", "Yellow", 260, 22));
+    spaces.push_back(MonopolySpace("Water Works", "Utility", 150, 0));
+    spaces.push_back(MonopolySpace("Marvin Gardens", "Yellow", 280, 24));
+    spaces.push_back(MonopolySpace("Go to Jail", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Pacific Ave", "Green", 300, 26));
+    spaces.push_back(MonopolySpace("North Carolina Ave", "Green", 300, 26));
+    spaces.push_back(MonopolySpace("Community Chest", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Pennsylvania Ave", "Green", 320, 28));
+    spaces.push_back(MonopolySpace("Short Line", "Railroad", 200, 25));
+    spaces.push_back(MonopolySpace("Chance", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Park Place", "Dark Blue", 350, 35));
+    spaces.push_back(MonopolySpace("Luxury Tax", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Boardwalk", "Dark Blue", 400, 50));
+
 
     // -------------------------------
     // Playable Traversal Loop
